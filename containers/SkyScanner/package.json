@@ -1,0 +1,13 @@
+{
+  "name": "bet-a-way-skyscanner",
+  "version": "0.0.1",
+  "description": "SkyScanner handler for bet-a-way",
+  "author": "Aaron Osher <aaron@oshers.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
