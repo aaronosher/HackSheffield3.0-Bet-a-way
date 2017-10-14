@@ -1,6 +1,7 @@
 var assert = require('assert');
 const env = require('node-env-file')('./.env')
 var request = require('sync-request');
+var moment = require('moment');
 // SkyScanner API handler
 var api = {
     getOriginId: function(origin_query) {
@@ -24,9 +25,6 @@ var api = {
             return locationId.Places[0].PlaceId;
         }
     },
-    validate_date: function(date) {
-        
-    },
     getDestinations: function(params) {
         var origin_id = api.getOriginId(params.origin);
         if(!origin_id) {
@@ -35,7 +33,18 @@ var api = {
                 msg: 'invalid origin'
             }
         }
-        return origin_id;
+        if(!moment(params.depDate).isValid()) {
+            return {
+                error: true,
+                msg: 'invalid departure date'
+            }
+        }
+        if(!moment(params.arrDate).isValid()) {
+            return {
+                error: true,
+                msg: 'invalid return date'
+            }
+        }
     }
 }
 
