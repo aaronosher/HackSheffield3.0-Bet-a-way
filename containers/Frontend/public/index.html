@@ -1,0 +1,64 @@
+<html ng-app="betaway">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="js/maskMoney.js" type="text/javascript"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/drawsvg.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+    <script src="js/controllers/master.js"></script>
+</head>
+<body>
+<div id="page">
+    <div id="ParallaxWrapper">
+        <div id="ContainerParallax" class="container">
+            <ul id="scene" class="scene framed" >
+                <li id="scene1" class="layer layer1" data-depth="0.5" data-relativeinput="true" data-cliprelativeinput="true" data-limit-y="10" data-limit-x="10" data-invert-x="true" data-invert-y="true" data-friction-x="0.3" data-friction-y="0.3" data-origin-x="{param_originX}" data-origin-y="{param_originY}" style="transform: translate3d(0px, 0px, 0px);"></li>
+                <li id="scene2" class="layer layer2" data-depth="0.1" data-relativeinput="true" data-cliprelativeinput="true" data-limit-y="10" data-limit-x="10" data-invert-x="true" data-invert-y="true" data-friction-x="0.3" data-friction-y="0.3" data-origin-x="{param_originX}" data-origin-y="{param_originY}" style="transform: translate3d(0px, 0px, 0px);"></li>
+                <li id="scene3" class="layer layer3" data-depth="0.3" data-relativeinput="true" data-cliprelativeinput="true" data-limit-y="10" data-limit-x="10" data-invert-x="true" data-invert-y="true" data-friction-x="0.3" data-friction-y="0.3" data-origin-x="{param_originX}" data-origin-y="{param_originY}" style="transform: translate3d(0px, 0px, 0px);"></li>
+                <!--<li id="scene4" class="layer layer4" data-depth="0.6" data-relativeinput="true" data-cliprelativeinput="true" data-limit-y="10" data-limit-x="10" data-invert-x="true" data-invert-y="true" data-friction-x="0.3" data-friction-y="0.3" data-origin-x="{param_originX}" data-origin-y="{param_originY}" style="transform: translate3d(0px, 0px, 0px);"></li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<h1 class="title animated bounceInDown">BET_AWAY</h1>
+<div ng-controller="master" class="mainForm animated zoomInUp">
+    <div class="form-control">
+        <label for="where">Where do you want to depart from?</label>
+        <input ng-model="dest" placeholder="For example: London" type="text" id="where"/>
+    </div>
+    <div class="form-control">
+        <label for="where">What is your current price range?</label>
+        <input ng-model="price" type="text" id="maskmoney"/>
+    </div>
+    <div class="container">
+				<canvas id="bg"></canvas>
+				<div class="button-holder">
+						<div id="epic-button">
+								<svg id="button" viewBox="0 0 270.5 89.7">
+										<g id="box">
+												<polyline fill="none" stroke="#FFF" stroke-width="4" stroke-miterlimit="10" points="114,84 47,84 47,2 223.5,2 223.5,84 159.7,84" style="stroke-dasharray: 472.30001px, 482.3px;"></polyline>
+										</g>
+										<g id="slash">
+												<line opacity="0.4" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" x1="142.3" y1="79" x2="132.3" y2="89" style="stroke-dasharray: 15.142145623731px, 25.142135623731px;"></line>
+										</g>
+								</svg>
+								<div class="button-text">
+										<h2>GO</h2>
+								</div>
+						</div>
+				</div>
+				<div class="border"></div>
+		</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/1.1.1/parallax.js"></script>
+<script type="text/javascript" language="javascript">
+var scene = document.getElementById('scene');
+var parallax = new Parallax(scene);
+
+</script>
+<script src="js/index.js"></script>
+</body>
+</html>
