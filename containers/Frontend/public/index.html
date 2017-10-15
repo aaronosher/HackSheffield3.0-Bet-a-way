@@ -77,7 +77,7 @@
     </p>
     <br>
     <button ng-click="cancel();" data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-    <button ng-click="getData();" data-remodal-action="confirm" class="remodal-confirm">Continue</button>
+    <button ng-click="goToBetsMenu();" data-remodal-action="confirm" class="remodal-confirm">Continue</button>
 </div>
 
 <div ng-if="majorError.length > 0" class="remodal animated sec fadeInUp" data-remodal-id="modal">
@@ -89,6 +89,30 @@
         <br>
         <button ng-click="cancel();" data-remodal-action="cancel" class="remodal-confirm">Retry</button>
     </div>
+
+<div ng-if="betsMenu == true" class="remodal animated sec fadeInUp" data-remodal-id="modal">
+        <!-- <button data-remodal-action="close" class="remodal-close"></button> -->
+        <h1>Choose a risk package</h1>
+        <p>
+            Do you want to good odds but a lesser cool flight? Or riskier odds and a much more rewarding holiday?
+        </p>
+        <br>
+        <button ng-click="safe();" data-remodal-action="cancel" class="remodal-confirm">Safe</button>
+        <button ng-click="risk();" data-remodal-action="cancel" class="remodal-cancel">Risky</button>
+</div>
+
+<div style="overflow: scroll; height: 400px;" ng-if="resultsPage == true" class="remodal animated sec fadeInUp" data-remodal-id="modal">
+        <!-- <button data-remodal-action="close" class="remodal-close"></button> -->
+        <h1>Your odds for: {{game}} are {{bets}}</h1>
+        <div ng-repeat="flight in flights track by $index">
+            <p>City: {{flight.arrivalCity}}</p>
+            <p>Price of flight: £{{flight.price}}</p>
+            <a href="{{flight.book}}" class="remodal-confirm">Book Now</a>
+            <button class="remodal-confirm">Bet Now</button>
+        </div>
+        <br>
+        <button ng-click="cancel();" data-remodal-action="cancel" class="remodal-cancel">Close</button>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/1.1.1/parallax.js"></script>
 <script type="text/javascript" language="javascript">
