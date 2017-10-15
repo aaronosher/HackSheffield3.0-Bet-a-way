@@ -6,6 +6,7 @@ app.controller('master', ['$scope', '$http', 'betFlight',
 
     $scope.dest = "";
     $scope.price = "£0.00";
+    $scope.date = "";
     $scope.processing = false;
     $scope.modalOn = false;
 
@@ -14,7 +15,11 @@ app.controller('master', ['$scope', '$http', 'betFlight',
     };
 
     $scope.getData = function(){
-        betFlight.getData($scope.dest);
+        betFlight.getData({
+            dest: $scope.dest,
+            price: $scope.price,
+            date: $scope.date
+        });
     }
 
     $scope.cancel = function(){
