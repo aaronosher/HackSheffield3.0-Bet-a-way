@@ -60,11 +60,13 @@ body {
 background-repeat: no-repeat; background-size: 30%; background-position: center; background-position-y: 10%; }
 
 .title{
-    font-size: 4rem;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
     position: absolute;
     z-index: 9999;
-    top: 1%;
-    width: 100%;
+    top: 0;
+    width: 45%;
     text-align: center;
     color: #f1cd61;
     font-style: italic;
