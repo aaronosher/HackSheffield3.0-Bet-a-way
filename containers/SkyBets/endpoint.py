@@ -46,3 +46,5 @@ def bet():
 	return1 = [400, max, min_max_var[0]['number']]
 	return1 = json.dumps(return1)
 	return json.dumps(min_max_var)
+
+app.run(host='0.0.0.0')
