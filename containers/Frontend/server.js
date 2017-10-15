@@ -33,8 +33,13 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + index));
 });
 
-app.post('/betflight', getGamesData, (req, res) => {
-    res.send(res.data);
+app.post('/betflight', (req, res) => {
+    request(skyBets, (error, response, body) => {
+        request(Bets, (error, response, body2) => {
+            //TODO handle
+        })
+    });
+
 });
 
 app.listen(PORT, HOST, () => {

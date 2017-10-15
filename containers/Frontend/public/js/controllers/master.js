@@ -18,12 +18,19 @@ app.controller('master', ['$scope', '$http', 'betFlight',
         betFlight.getData({
             dest: $scope.dest,
             price: $scope.price,
-            date: $scope.date
+            inboundDate: $scope.date,
+            outbountDate: getOutbound()
         });
     }
 
     $scope.cancel = function(){
         $scope.modalOn = false;
+    }
+
+    function getOutbound(){
+        var out = new Date();
+        var window;
+        out.setDate(out.getDate() + window);
     }
 
 }]);
