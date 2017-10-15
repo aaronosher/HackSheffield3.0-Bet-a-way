@@ -58,8 +58,12 @@ var api = {
             .filter(a => a.QuoteIds
             .map(b => validQuotes.indexOf(b) === -1)
             .reduce((c,d) => c || d), false)
-        console.log(validQuotes)
-        console.log(r_routes)
+
+        routes.forEach(function(route) {
+            departureCity = places.filter(a => a.PlaceId == route.OriginId)
+            arrivalCity = places.filter(a => a.PlaceId == route.DestinationId)
+            console.log('Flight '+route.QuoteIds[0]+': '+departureCity[0].CityName+' to '+arrivalCity[0].Name+' for £'+route.Price+'.')
+        })
         return routes
     },
     getDestinations: function(params) {

@@ -6,11 +6,6 @@ app.get('/', (req, res) => {
   res.send('Bet-a-way API');
 });
 
-app.get('/env', (req, res) => {
-  res.send(api.getEnv());
-});
-
-
 app.get('/destinations/:maxPrice/:origin/:depDate/:arrDate', function (req, res) {
   res.send(api.getDestinations(req.params));
 })
