@@ -33,7 +33,7 @@ def bet():
 						 'Away': x['Away'],
 						 'betType':oddsData
 						 }
-		return([min_list, max_list])
+		return [min_list, max_list]
 
 	def flightAndBetBudget(budget, Odds):
 		bet = budget/float(Odds)
@@ -45,4 +45,4 @@ def bet():
 	max = flightAndBetBudget(400, min_max_var[1]['number'])
 	return1 = [400, max, min_max_var[0]['number']]
 	return1 = json.dumps(return1)
-	return return1
+	return json.dumps(min_max_var)
