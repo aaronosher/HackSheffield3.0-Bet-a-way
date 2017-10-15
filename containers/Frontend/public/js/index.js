@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     $("#maskmoney").maskMoney({"prefix":"£"});
+    $("#calendar").datepicker();
 
     TweenMax.set("#button *", {drawSVG:0});;
 

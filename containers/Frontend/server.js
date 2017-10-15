@@ -11,8 +11,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 var path = require('path');
 var index = "/public/index.html";
 
-function getSkyscannerData(req, res, next){
-    
+const getSkyscannerData = (req, res, next) => {
+    request(skyScanner, (error, response, body) => {
+        if(error || !body.msg){
+            res.data = {error: 'Unknown error occured'};
+        }else{
+            res.data = body;
+        }
+        next();
+    })
 }
 
 const getGamesData = (req, res, next) => {
