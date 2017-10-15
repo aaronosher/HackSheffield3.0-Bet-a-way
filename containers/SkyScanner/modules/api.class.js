@@ -58,13 +58,38 @@ var api = {
             .filter(a => a.QuoteIds
             .map(b => validQuotes.indexOf(b) === -1)
             .reduce((c,d) => c || d), false)
-
+        console.log(carriers);
+        let objectToReturn = []
         routes.forEach(function(route) {
-            departureCity = places.filter(a => a.PlaceId == route.OriginId)
-            arrivalCity = places.filter(a => a.PlaceId == route.DestinationId)
-            console.log('Flight '+route.QuoteIds[0]+': '+departureCity[0].CityName+' to '+arrivalCity[0].Name+' for £'+route.Price+'.')
+            route.QuoteIds.forEach(function(quote) {
+                let fullQuote = quotes.filter(a => a.QuoteId == quote)[0]
+                outboundDepartureCity = places.filter(a => a.PlaceId == fullQuote.OutboundLeg.OriginId)
+                outboundArrivalCity = places.filter(a => a.PlaceId == fullQuote.OutboundLeg.DestinationId)
+                inboundDepartureCity = places.filter(a => a.PlaceId == fullQuote.InboundLeg.OriginId)
+                inboundArrivalCity = places.filter(a => a.PlaceId == fullQuote.InboundLeg.DestinationId)
+                objectToReturn.push({
+                    quoteId: quote,
+                    departureCity: outboundDepartureCity[0].CityName,
+                    arrivalCity: outboundArrivalCity[0].CityName,
+                    direct: fullQuote.Direct,
+                    outbound: {
+                        origin: outboundDepartureCity,
+                        destination: outboundArrivalCity,
+                        carrier: carriers.filter(a => a.CarrierId == fullQuote.OutboundLeg.CarrierIds[0]).Name,
+                        datetime: fullQuote.OutboundLeg.DepartureDate,
+                    },
+                    inbound: {
+                        origin: inboundDepartureCity,
+                        destination: inboundArrivalCity,
+                        carrier: carriers.filter(a => a.CarrierId == fullQuote.InboundLeg.CarrierIds[0]).Name,
+                        datetime: fullQuote.InboundLeg.DepartureDate,
+                    },
+                    price: fullQuote.MinPrice,
+                })
+            })
+            // console.log('Flight '+route.QuoteIds[0]+': '+departureCity[0].CityName+' to '+arrivalCity[0].Name+' for £'+route.Price+'.')
         })
-        return routes
+        return objectToReturn
     },
     getDestinations: function(params) {
         var origin_id = api.getOriginId(params.origin);
@@ -86,8 +111,12 @@ var api = {
                 msg: 'invalid return date'
             }
         }
-        routes = api.fetchRoutes(params, origin_id);
-        return api.getRoutesInPriceRange(params.maxPrice, routes)
+        let routes = api.fetchRoutes(params, origin_id);
+        let returnData = api.getRoutesInPriceRange(params.maxPrice, routes)
+        return {
+            error: false,
+            msg: returnData
+        }
     }
 }
 
