@@ -17,6 +17,10 @@
   animation-iteration-count: infinite;
 }
 
+.animated.sec{
+  animation-duration: 0.8s;
+}
+
 .animated.hinge {
   animation-duration: 2s;
 }
