@@ -179,3 +179,29 @@ background-repeat: no-repeat; background-size: 30%; background-position: center;
     from {opacity: 0%;}
     to {opacity: 100%;}
 } 
+
+.remodal{
+    display: block !important;
+    position: absolute !important;
+    top: 10%;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000000;
+    width: 80%;
+    left:0;
+    right:0;
+    margin: 0 auto;
+}
+
+.remodal .remodal-confirm, .remodal .remodal-cancel{
+    height: 50px;
+    width: 100px;
+    background: #f1cd61;
+    border: 0;
+    text-transform: uppercase;
+}
+
+.remodal-cancel{
+    background: tomato !important;
+}
