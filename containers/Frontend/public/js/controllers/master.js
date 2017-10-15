@@ -1,19 +1,6 @@
 var app = angular.module('betaway', []);
 var endpoint = "/betflight";
 
-let skyscannerBookURL = function(outboundIATA, destinationIATA, departureDate, arrivalDate) {
-    let baseUrl = "https://www.skyscanner.net/transport/flights/";
-    if(!outboundIATA.length() === 3 || !destinationIATA.length() === 3) {
-        return false;
-    }
-    let dDate = moment(departureDate);
-    let aDate = moment(arrivalDate);
-    departureDate = dDate.format('YYMMDD');
-    arrivalDate = aDate.format('YYMMDD');
-
-    let url = baseUrl+outboundIATA+'/'+destinationIATA+'/'+departureDate+'/'+arrivalDate;
-}
-
 app.controller('master', ['$scope', '$http', 'betFlight', 
     function($scope, $http, betFlight){
 
@@ -24,25 +11,51 @@ app.controller('master', ['$scope', '$http', 'betFlight',
     $scope.processing = false;
     $scope.modalOn = false;
     $scope.majorError = "";
+    $scope.betsMenu = false;
+    var path = "safe";
+    $scope.resultsPage = false;
+    $scope.flights = [];
+    $scope.odds = 0;
 
     $scope.confirmGet = function(){
         $scope.modalOn = true;
     };
 
+    $scope.goToBetsMenu = function(){
+        $scope.cancel();
+        $scope.betsMenu = true;
+    }
+
+    $scope.risk = function(){
+        path = 'risk';
+        $scope.getData();
+    }
+
+    $scope.safe = function(){
+        path = 'safe';
+        $scope.getData();
+    }
+
     $scope.getData = function(){
+        $scope.betsMenu = false;
         $scope.cancel();
         $scope.majorError = "";
         $scope.processing = true;
-        console.log($scope.price);
         betFlight.getData(endpoint, {
             origin: $scope.form.dest,
             price: parseInt($scope.form.price.replace(/[£,]/g,"")),
             outboundDate: toISO($scope.form.date),
-            inboundDate: getOutbound()
+            inboundDate: getOutbound(),
+            route: path
         }).then(function(response){
             $scope.processing = false;
-            if(response.error){
-                $scope.majorError = response.error;
+            if(response.data.error){
+                $scope.majorError = response.data.error;
+            }else{
+                console.log(response.data);
+                $scope.flights = response.data.flight.msg;
+                $scope.odds = response.data.odds;
+                $scope.resultsPage = true;
             }
         }, function(error){
             $scope.processing = false;
@@ -54,6 +67,7 @@ app.controller('master', ['$scope', '$http', 'betFlight',
     $scope.cancel = function(){
         $scope.modalOn = false;
         $scope.majorError = "";
+        $scope.resultsPage = false;
     }
 
     function addDays(date, amount) {
