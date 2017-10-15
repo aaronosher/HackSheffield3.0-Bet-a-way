@@ -56,8 +56,8 @@ body {
     .layer1 { background: url('https://casino-ideer.businesscatalyst.com/assets/front_uden_dark.png') no-repeat; }
     .layer2 { background: url('https://casino-ideer.businesscatalyst.com/assets/back_dark.png') no-repeat; }
 .layer3 { background: url('https://casino-ideer.businesscatalyst.com/assets/middle_dark.png');}
-/*.layer4 { background: url('https://userscontent2.emaze.com/images/ba27679c-f221-4bf6-9493-cac6ae3508e1/89bcca07e2169b9eef3a5edea6ec61f3.png');
-background-repeat: no-repeat; background-size: 30%; background-position: center; background-position-y: 10%; }*/
+.layer4 { background: url('/images/airplanes.png');
+background-repeat: no-repeat; background-size: 30%; background-position: center; background-position-y: 10%; }
 
 .title{
     font-size: 4rem;
@@ -113,13 +113,14 @@ background-repeat: no-repeat; background-size: 30%; background-position: center;
     background-size: cover;
     background-position: center center;
     width: 100%;
-    top: 250px;
+    top: 358px;
+    height: 145px;
 	animation: zooOut 1.5s;
 }
 .button-holder {
     cursor: pointer;
 	position: absolute;
-    top: 114%;
+    top: 105%;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
@@ -204,4 +205,10 @@ background-repeat: no-repeat; background-size: 30%; background-position: center;
 
 .remodal-cancel{
     background: tomato !important;
+}
+
+#ui-datepicker-div{
+    right: 0;
+    left: 0 !important;
+    margin: 0 auto;
 }
