@@ -3,11 +3,10 @@ var path = require('path');
 var request = require('request');
 var bodyParser = require('body-parser');
 var moment = require('moment');
+const ENV = require('node-env-file')('.env');
 
-const skyBets = "http://localhost:5000/bet";
-const skyScanner = "http://localhost:7000/destinations";
-const PORT = 8080;
-const HOST = "localhost";
+const skyBets = ENV.skybet;
+const skyScanner = ENV.skyscanner;
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
@@ -108,7 +107,7 @@ app.post('/betflight', (req, res) => {
     });
 });
 
-app.listen(PORT, HOST, () => {
-    console.log("Server started on " + HOST 
-    + ", listening on port " + PORT);
+app.listen(ENV.PORT, ENV.HOST, () => {
+    console.log("Server started on " + ENV.HOST 
+    + ", listening on port " + ENV.PORT);
 });
