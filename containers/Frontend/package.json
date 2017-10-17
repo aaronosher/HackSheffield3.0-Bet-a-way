@@ -1,0 +1,28 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "bet-a-way.com frontend and content delivery",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "moment": "^2.19.1",
+    "path": "^0.12.7",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronosher/HackSheffield3.0-Bet-a-way.git"
+  },
+  "author": "Ian Bastos, Aaron Osher, Dean Welch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaronosher/HackSheffield3.0-Bet-a-way/issues"
+  },
+  "homepage": "https://github.com/aaronosher/HackSheffield3.0-Bet-a-way#readme"
+}
