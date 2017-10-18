@@ -1,0 +1,36 @@
+version: '3'
+services: 
+  reverse-proxy:
+    # image: 'hs3-baw-reverseproxy:latest'
+    # ports:
+    #   - "80:80"
+    build: ../containers/reverseProxy
+    depends_on:
+      - 'frontend'
+    networks:
+      - 'content-delivery'
+      - 'internal'
+  frontend:
+    # image: 'hs3-baw-frontend:latest'
+    build: ../containers/Frontend
+    depends_on:
+      - 'skyscanner'
+      - 'skybet'
+    networks: 
+      - 'content-delivery'
+      - 'internal'
+    ports:
+      - '80:80'
+  skybet:
+    # image: 'hs3-baw-skybet:latest'
+    build: ../containers/SkyBets
+    networks: 
+      - 'internal'
+  skyscanner:
+    # image: 'hs3-baw-skyscanner:latest'
+    build: ../containers/SkyScanner
+    networks: 
+      - 'internal'
+networks:
+  content-delivery:
+  internal:
